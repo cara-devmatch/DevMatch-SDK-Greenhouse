@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "tsc",
-    "run": "node dist\\index.js ",
+    "run": "node dist\\index.js statement ",
     "test": "npm run compile && npm run run"
   },
   "keywords": [],
