@@ -1,0 +1,22 @@
+{
+  "name": "validator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "tsc",
+    "run": "node dist\\index.js ",
+    "test": "npm run compile && npm run run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.0.2"
+  },
+  "dependencies": {
+    "@commander-js/extra-typings": "^10.0.3",
+    "commander": "^10.0.0"
+  }
+}
