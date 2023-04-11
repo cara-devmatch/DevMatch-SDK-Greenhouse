@@ -1,6 +1,7 @@
 import { DevMatchValidator, EvaluatedTestCase, ProblemConfiguration, ProblemInputType, ProblemOpenedResult, ProblemTestCase, User } from './interfaces'
 
 export class Validator implements DevMatchValidator{
+
     getTestCases(): ProblemTestCase[] {
         return [
             new ProblemTestCase({
@@ -16,7 +17,7 @@ export class Validator implements DevMatchValidator{
         new ProblemTestCase({
             id: "TEST_3",
             description: "Bad arguments - Too many",
-            maxPoints: 10,
+            maxPoints: 80,
         }),
         ]
     }
@@ -34,11 +35,9 @@ export class Validator implements DevMatchValidator{
 
 That's it!
 `
-
     }
 
     /**
-     * 
      * @returns An instance of the configuration object
      */
     getProblemConfiguration(): ProblemConfiguration {
@@ -49,7 +48,6 @@ That's it!
     }
 
     /**
-     * 
      * @param user The user that is opening this problem
      * @returns A ProblemOpenedResult with information about the action of opening.
      */
@@ -57,8 +55,7 @@ That's it!
         let openResult = new ProblemOpenedResult();
         openResult.opened = true;
         openResult.databag.set('date', new Date().getTime().toString())
-        openResult.instructions = `
-These are instructions.`
+        openResult.instructions = `These are instructions.`
 
         return Promise.resolve(openResult)
     }

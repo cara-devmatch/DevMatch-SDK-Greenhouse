@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "compile": "tsc",
-    "run": "node dist\\index.js statement ",
+    "devmatch": "node dist\\index.js  ",
     "test-old": "npm run compile && npm run run",
     "build": "webpack",
     "test" : "node build\\main-bundle.js"
