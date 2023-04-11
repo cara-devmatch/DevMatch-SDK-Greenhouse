@@ -6,9 +6,7 @@
   "scripts": {
     "compile": "tsc",
     "devmatch": "node dist\\index.js  ",
-    "test-old": "npm run compile && npm run run",
-    "build": "webpack",
-    "test" : "node build\\main-bundle.js"
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",
