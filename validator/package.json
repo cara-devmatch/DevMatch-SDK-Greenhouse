@@ -6,13 +6,18 @@
   "scripts": {
     "compile": "tsc",
     "run": "node dist\\index.js statement ",
-    "test": "npm run compile && npm run run"
+    "test-old": "npm run compile && npm run run",
+    "build": "webpack",
+    "test" : "node build\\main-bundle.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "^5.0.2"
+    "ts-loader": "^9.4.2",
+    "typescript": "^5.0.4",
+    "webpack": "^5.78.0",
+    "webpack-cli": "^5.0.1"
   },
   "dependencies": {
     "@commander-js/extra-typings": "^10.0.3",
