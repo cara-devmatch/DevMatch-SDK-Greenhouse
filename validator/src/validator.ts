@@ -28,13 +28,7 @@ export class Validator implements DevMatchValidator{
     }
 
     getProblemStatement(userId: string): string {
-        return  `In this assessment you need to do the follwing:
-
-* First, do this.
-* Then do that.
-
-That's it!
-`
+        return  `The contents of the problem are here!`
     }
 
     /**

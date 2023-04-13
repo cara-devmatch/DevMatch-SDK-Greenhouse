@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile": "tsc",
     "devmatch": "node dist\\index.js  ",
-    "build": "webpack"
+    "compile": "tsc",
+    "publish": "webpack"
   },
   "keywords": [],
   "author": "",
