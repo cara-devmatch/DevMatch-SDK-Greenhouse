@@ -56,6 +56,11 @@ export class Validator implements DevMatchValidator{
 
 
     validate( id: number, user: User, testCases: EvaluatedTestCase[], databag: Map<string, string>, validationInput?: any,): Promise<EvaluatedTestCase[]> {
+        for (let testCase of testCases) {
+            testCase.actualPoints = testCase.maxPoints
+            testCase.hint = 'here is a hint from the problem for case ' + testCase.id
+            testCase.solved = true
+        }
         return Promise.resolve(testCases);
     }
 }
