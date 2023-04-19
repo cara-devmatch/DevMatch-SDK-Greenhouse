@@ -71,15 +71,25 @@ export class ProblemOpenedResult {
   }
 }
 
+export class ProblemPrerequisitesResult {
+  opened: boolean;
+  message: string | null;
+
+  constructor(opened, message : string | null = null) {
+    this.opened = opened;
+    this.message = message;
+  }
+}
+
 
 export interface DevMatchValidator {
-  getTestCases(): ProblemTestCase[]
+  getTestCases(): Promise<ProblemTestCase[]>
 
-  prerequesites(user: User): boolean
+  prerequesites(user: User): Promise<ProblemPrerequisitesResult>
 
-  getProblemStatement(userId: string): string;
+  getProblemStatement(userId: string): Promise<string>;
 
-  getProblemConfiguration(): ProblemConfiguration ;
+  getProblemConfiguration(): Promise<ProblemConfiguration> ;
 
   openProblem(user: User): Promise<ProblemOpenedResult>
 

@@ -33,14 +33,14 @@ program
         // TODO: DevMatchValidator must have not been tampered with
 
         // Get the problem configuration
-        let problemConfig = validator.getProblemConfiguration();
+        let problemConfig = await validator.getProblemConfiguration();
         if (problemConfig.ideEnabled) {
             log(`configuration.ideEnabled: ${problemConfig.ideEnabled}`)
             log(`configuration.inputType: ${problemConfig.inputType}`)
         }
 
         // Validation rule: Test cases must add up to 100
-        const problemTestCases = validator.getTestCases();
+        const problemTestCases = await validator.getTestCases();
         const moreThanOneTestCase = problemTestCases.length > 1;
         if (!moreThanOneTestCase) {
             validationFailures.push("Must have more than one test case.");

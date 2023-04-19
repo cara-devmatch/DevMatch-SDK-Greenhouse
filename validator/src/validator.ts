@@ -1,9 +1,9 @@
-import { DevMatchValidator, EvaluatedTestCase, ProblemConfiguration, ProblemInputType, ProblemOpenedResult, ProblemTestCase, User } from './interfaces'
+import { DevMatchValidator, EvaluatedTestCase, ProblemConfiguration, ProblemInputType, ProblemOpenedResult, ProblemPrerequisitesResult, ProblemTestCase, User } from './interfaces'
 
 export class Validator implements DevMatchValidator{
 
-    getTestCases(): ProblemTestCase[] {
-        return [
+    async getTestCases(): Promise<ProblemTestCase[]> {
+        return Promise.resolve([
             new ProblemTestCase({
             id: "TEST_1",
             description: "Add two integers",
@@ -19,22 +19,22 @@ export class Validator implements DevMatchValidator{
             description: "Bad arguments - Too many",
             maxPoints: 80,
         }),
-        ]
+        ])
     }
 
-    prerequesites(user: User) {
+    async prerequesites(user: User) : Promise<ProblemPrerequisitesResult> {
         // There are no pre-requisites for this problem.
-        return true;
+        return Promise.resolve(new ProblemPrerequisitesResult(true));
     }
 
-    getProblemStatement(userId: string): string {
-        return  `The contents of the problem are here!`
+    async getProblemStatement(userId: string): Promise<string> {
+        return `The contents of the problem are here!`
     }
 
     /**
      * @returns An instance of the configuration object
      */
-    getProblemConfiguration(): ProblemConfiguration {
+    async getProblemConfiguration(): Promise<ProblemConfiguration> {
         let config = new ProblemConfiguration();
         config.ideEnabled = false;
         config.inputType = ProblemInputType.GitRepo;
