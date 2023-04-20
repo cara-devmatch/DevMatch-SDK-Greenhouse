@@ -6,7 +6,7 @@
   "scripts": {
     "devmatch": "node dist/index.js  ",
     "compile": "tsc",
-    "publish": "webpack && cp dist/main-bundle.js /Users/alan/code/turing/backend/tests/test.problem.js"
+    "publish": "webpack --progress  "
   },
   "keywords": [],
   "author": "",

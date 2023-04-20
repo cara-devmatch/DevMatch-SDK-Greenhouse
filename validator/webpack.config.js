@@ -8,6 +8,7 @@ module.exports = {
   // inline-source-map -> Possible choice when publishing a single file
   // (none) -> Recommended choice for production builds with maximum performance.
   devtool: "inline-source-map",
+  target: "node",
   entry: {
     main: "./src/validator.ts",
   },

@@ -1,6 +1,16 @@
 import { DevMatchValidator, EvaluatedTestCase, ProblemConfiguration, ProblemInputType, ProblemOpenedResult, ProblemPrerequisitesResult, ProblemTestCase, User } from './interfaces'
 
+import { GitHubPlugin } from './github'
+import { LoggerPlugin } from './logger'
+import { UnzipPlugin } from './unzip' 
+
+
 export class Validator implements DevMatchValidator{
+    constructor(
+      private githubPlugin: GitHubPlugin,
+      private unzipPlugin: UnzipPlugin,
+      private logger: LoggerPlugin) {
+    }
 
     async getTestCases(): Promise<ProblemTestCase[]> {
         return Promise.resolve([
@@ -28,7 +38,7 @@ export class Validator implements DevMatchValidator{
     }
 
     async getProblemStatement(userId: string): Promise<string> {
-        return `The contents of the problem are here!`
+        return Promise.resolve(`The contents of the problem are here!`)
     }
 
     /**
@@ -38,14 +48,14 @@ export class Validator implements DevMatchValidator{
         let config = new ProblemConfiguration();
         config.ideEnabled = false;
         config.inputType = ProblemInputType.GitRepo;
-        return config;
+        return Promise.resolve(config);
     }
 
     /**
      * @param user The user that is opening this problem
      * @returns A ProblemOpenedResult with information about the action of opening.
      */
-    openProblem(user: User): Promise<ProblemOpenedResult> {
+    async openProblem(user: User): Promise<ProblemOpenedResult> {
         let openResult = new ProblemOpenedResult();
         openResult.opened = true;
         openResult.databag.set('date', new Date().getTime().toString())
@@ -55,7 +65,7 @@ export class Validator implements DevMatchValidator{
     }
 
 
-    validate( id: number, user: User, testCases: EvaluatedTestCase[], databag: Map<string, string>, validationInput?: any,): Promise<EvaluatedTestCase[]> {
+    async validate( id: number, user: User, testCases: EvaluatedTestCase[], databag: Map<string, string>, validationInput?: any,): Promise<EvaluatedTestCase[]> {
         for (let testCase of testCases) {
             testCase.actualPoints = testCase.maxPoints
             testCase.hint = 'here is a hint from the problem for case ' + testCase.id

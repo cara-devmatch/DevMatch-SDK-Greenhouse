@@ -3,6 +3,9 @@ import { Command } from '@commander-js/extra-typings';
 import { program } from '@commander-js/extra-typings';
 import { User } from './interfaces';
 import { Validator } from './validator';
+import { GitHubPlugin } from './github';
+import { UnzipPlugin } from './unzip';
+import { LoggerPlugin } from './logger';
 
 function log(s) {
     console.log(s)
@@ -27,7 +30,10 @@ program
 
         // This commands tests codepaths of the problem,
         // first instantiate the validator.
-        let validator = new Validator();
+        let validator = new Validator(
+            new GitHubPlugin(),
+            new UnzipPlugin(),
+            new LoggerPlugin());
 
         // TODO: Validator must be an instance of DevMatchValidator
         // TODO: DevMatchValidator must have not been tampered with
