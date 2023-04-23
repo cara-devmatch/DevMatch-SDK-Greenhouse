@@ -6,6 +6,7 @@ import { Validator } from './validator';
 import { GitHubPlugin } from './github';
 import { UnzipPlugin } from './unzip';
 import { LoggerPlugin } from './logger';
+import { DevMatchGitServer } from './DevMatchGitServer';
 
 function log(s) {
     console.log(s)
@@ -33,7 +34,8 @@ program
         let validator = new Validator(
             new GitHubPlugin(),
             new UnzipPlugin(),
-            new LoggerPlugin());
+            new LoggerPlugin(),
+            new DevMatchGitServer());
 
         // TODO: Validator must be an instance of DevMatchValidator
         // TODO: DevMatchValidator must have not been tampered with

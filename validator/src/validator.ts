@@ -9,7 +9,8 @@ export class Validator implements DevMatchValidator{
     constructor(
       private githubPlugin: GitHubPlugin,
       private unzipPlugin: UnzipPlugin,
-      private logger: LoggerPlugin) {
+      private logger: LoggerPlugin,
+      private gitServer: DevMatchGitServer) {
     }
 
     async getTestCases(): Promise<ProblemTestCase[]> {

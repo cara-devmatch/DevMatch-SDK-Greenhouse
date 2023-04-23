@@ -19,7 +19,7 @@ export class GitHubPlugin {
   public async findForkedRepoForUser(username: string, repoName: string) : Promise<any> {
   }
 
-  public async getWorkflow(repoFullName: string, workflowId: string) {
+  public async getWorkflow(repoFullName: string, workflowId: string) : Promise<any>{
   }
 
   public async findWorkflowsForPr(repoFullName: string, pullRequestNumber: string, owner: string) {
