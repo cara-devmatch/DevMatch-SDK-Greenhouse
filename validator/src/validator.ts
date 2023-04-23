@@ -3,6 +3,7 @@ import { DevMatchValidator, EvaluatedTestCase, ProblemConfiguration, ProblemInpu
 import { GitHubPlugin } from './github'
 import { LoggerPlugin } from './logger'
 import { UnzipPlugin } from './unzip' 
+import { DevMatchGitServer } from './DevMatchGitServer'
 
 
 export class Validator implements DevMatchValidator{
