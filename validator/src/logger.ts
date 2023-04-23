@@ -8,6 +8,12 @@ export class LoggerPlugin {
   
     public warn(message: string, ...args) : void {
     }
+
+    public debug(message: string, ...args) : void {
+    }
+
+    public error(message: string, ...args) : void {
+    }
   }
   
   

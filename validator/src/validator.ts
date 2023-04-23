@@ -4,6 +4,7 @@ import { GitHubPlugin } from './github'
 import { LoggerPlugin } from './logger'
 import { UnzipPlugin } from './unzip' 
 import { DevMatchGitServer } from './DevMatchGitServer'
+import { StoragePlugin } from './s3'
 
 
 export class Validator implements DevMatchValidator{
@@ -11,7 +12,8 @@ export class Validator implements DevMatchValidator{
       private githubPlugin: GitHubPlugin,
       private unzipPlugin: UnzipPlugin,
       private logger: LoggerPlugin,
-      private gitServer: DevMatchGitServer) {
+      private gitServer: DevMatchGitServer,
+      private storagePlugin: StoragePlugin) {
     }
 
     async getTestCases(): Promise<ProblemTestCase[]> {
