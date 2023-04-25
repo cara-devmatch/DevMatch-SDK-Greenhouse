@@ -5,7 +5,7 @@ import { LoggerPlugin } from './logger'
 import { UnzipPlugin } from './unzip' 
 import { DevMatchGitServer } from './DevMatchGitServer'
 import { StoragePlugin } from './s3'
-
+import { AzureDevOpsPlugin } from "./devops";
 
 export class Validator implements DevMatchValidator{
     constructor(
@@ -13,7 +13,8 @@ export class Validator implements DevMatchValidator{
       private unzipPlugin: UnzipPlugin,
       private logger: LoggerPlugin,
       private gitServer: DevMatchGitServer,
-      private storagePlugin: StoragePlugin) {
+      private storagePlugin: StoragePlugin,
+      private devopsClient: AzureDevOpsPlugin){
     }
 
     async getTestCases(): Promise<ProblemTestCase[]> {

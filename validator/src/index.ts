@@ -8,6 +8,7 @@ import { UnzipPlugin } from './unzip';
 import { LoggerPlugin } from './logger';
 import { DevMatchGitServer } from './DevMatchGitServer';
 import { StoragePlugin } from './s3';
+import { AzureDevOpsPlugin } from './devops';
 
 function log(s) {
     console.log(s)
@@ -37,7 +38,8 @@ program
             new UnzipPlugin(),
             new LoggerPlugin(),
             new DevMatchGitServer(),
-            new StoragePlugin());
+            new StoragePlugin(),
+            new AzureDevOpsPlugin());
 
         // TODO: Validator must be an instance of DevMatchValidator
         // TODO: DevMatchValidator must have not been tampered with
