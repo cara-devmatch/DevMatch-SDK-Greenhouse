@@ -1,7 +1,7 @@
 
 export class GitHubPlugin {
 
-  public async inviteUserToRepo(githubUser: string, repoFullName: string) {
+  public async inviteUserToRepo(githubUser: string, repoFullName: string) : Promise<any> {
   }
 
   public async userExists(githubUser: string) : Promise<boolean> {
@@ -12,8 +12,7 @@ export class GitHubPlugin {
     return Promise.resolve(true);
   }
 
-  public createIssue( githubUser: string, repoFullName: string, title, body, assignees: Array<string>, labels: Array<string>,) {
-
+  public async createIssue( githubUser: string, repoFullName: string, title, body, assignees: Array<string>, labels: Array<string>) : Promise<any> {
   }
 
   public async findForkedRepoForUser(username: string, repoName: string) : Promise<any> {
@@ -22,7 +21,7 @@ export class GitHubPlugin {
   public async getWorkflow(repoFullName: string, workflowId: string) : Promise<any>{
   }
 
-  public async findWorkflowsForPr(repoFullName: string, pullRequestNumber: string, owner: string) {
+  public async findWorkflowsForPr(repoFullName: string, pullRequestNumber: string, owner: string) : Promise<any> {
   }
 
   public async findWorkflowForRepo(repoFullName: string) : Promise<any> {
@@ -38,7 +37,7 @@ export class GitHubPlugin {
   public async download(repoFullName: string, id: number) : Promise<any> {
   }
 
-  public async findPrFromUser(githubUser: string, repoFullName: string) {
+  public async findPrFromUser(githubUser: string, repoFullName: string) : Promise<any> {
   }
 }
 
