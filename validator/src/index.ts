@@ -1,7 +1,7 @@
 // const { program } = require('commander');
 import { Command } from '@commander-js/extra-typings';
 import { program } from '@commander-js/extra-typings';
-import { User } from './interfaces';
+import { EvaluatedTestCase, User } from './interfaces';
 import { Validator } from './validator';
 import { GitHubPlugin } from './github';
 import { UnzipPlugin } from './unzip';
@@ -87,6 +87,37 @@ program
 
         // Get the statement
         let problemStatement = await validator.getProblemStatement(user.id)
+
+        // Get the test cases from the problem
+        const testCases = await validator.getTestCases();
+
+        // turn these test cases into evaluated test cases
+        const evaluatedTestCases: EvaluatedTestCase[] = testCases?.map(
+            (testCase) => new EvaluatedTestCase(testCase)
+        ); 
+
+        let totalPoints = 0;
+        let passed = true;
+        const actualyEvaluatedTestCases = await validator.validate(123, user, evaluatedTestCases, problemOpenResult.databag)
+        for (const testCase of actualyEvaluatedTestCases) {
+            console.log(
+              `Evaluating case ${testCase.id} - ${testCase.actualPoints} / ${testCase.maxPoints}`
+            );
+            totalPoints += testCase.actualPoints;
+      
+            // If any test case fails, then we fail the whole thing
+            if (!testCase.solved) {
+              passed = false;
+            }
+          }
+      
+          const verdict = {
+            totalPoints: totalPoints,
+            passed: passed,
+            testCases: actualyEvaluatedTestCases,
+          };
+          console.log(verdict)
+
 
         console.log("Validation failures: ", validationFailures)
     });

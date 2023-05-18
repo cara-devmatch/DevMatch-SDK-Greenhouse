@@ -4,15 +4,19 @@ export class LoggerPlugin {
     }
 
     public info(message: string, ...args) : void {
+      console.log(` > ${message}`)
     }
   
     public warn(message: string, ...args) : void {
+      console.log(` > ${message}`)
     }
 
     public debug(message: string, ...args) : void {
+      console.log(` > ${message}`)
     }
 
     public error(message: string, ...args) : void {
+      console.log(` > ${message}`)
     }
   }
   

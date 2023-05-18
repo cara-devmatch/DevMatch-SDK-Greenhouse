@@ -2,12 +2,13 @@
 const path = require('path');
 
 module.exports = {
-  // production or development
-  mode: "development",
+  // production   --> 
+  // development  -->
+  mode: "production",
 
-  // inline-source-map -> Possible choice when publishing a single file
-  // (none) -> Recommended choice for production builds with maximum performance.
-  devtool: "inline-source-map",
+  // inline-source-map  -> Possible choice when publishing a single file
+  // (none)             -> Recommended choice for production builds with maximum performance.
+  devtool: "nosources-source-map",
   target: "node",
   entry: {
     main: "./src/validator.ts",

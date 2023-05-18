@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "devmatch": "node dist/index.js  ",
+    "devmatch": "node dist/index.js test  ",
     "compile": "tsc",
     "publish": "webpack --progress  "
   },
