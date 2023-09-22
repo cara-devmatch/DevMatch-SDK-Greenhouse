@@ -1,6 +1,6 @@
 # The Greenhouse
 
-Your friends own a large greenhouse, and recently set up some great technology that can care for plants at the push of a button! However, they could use some help putting together an API so they can interact with their new technology from afar. You've decided to use Python\'s FastAPI framework to build this REST API for them, and store the data in a SQL database.
+Your friends own a large greenhouse, and recently set up some great technology that can care for plants at the push of a button! However, they could use some help putting together an API so they can interact with their new technology from afar. You've decided to use Python's FastAPI framework to build this REST API for them, and store the data in a SQL database.
 
 # Plant Inventory
 

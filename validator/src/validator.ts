@@ -51,7 +51,7 @@ export class Validator implements DevMatchValidator{
      */
     async getProblemConfiguration(): Promise<ProblemConfiguration> {
         let config = new ProblemConfiguration();
-        config.ideEnabled = false;
+        config.ideEnabled = true;
         config.inputType = ProblemInputType.GitRepo;
         return Promise.resolve(config);
     }
