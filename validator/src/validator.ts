@@ -28,7 +28,7 @@ export class Validator implements DevMatchValidator {
         ])
     }
 
-    async prerequesites(user: User) : Promise<ProblemPrerequisitesResult> {
+    async prerequesites(user: User): Promise<ProblemPrerequisitesResult> {
         // There are no pre-requisites for this problem.
         return Promise.resolve(new ProblemPrerequisitesResult(true));
     }
@@ -78,9 +78,11 @@ Review the changes made, providing feedback on this pull request including reada
      */
     async openProblem(user: User): Promise<ProblemOpenedResult> {
         let openResult = new ProblemOpenedResult();
+        const repoUrl = "https://github.com/cara-devmatch/Greenhouse-Code.git"
+
+        openResult.databag.set("repoUrl", repoUrl)
         openResult.opened = true;
         openResult.databag.set('date', new Date().getTime().toString())
-        openResult.instructions = `These are instructions.`
 
         return Promise.resolve(openResult)
     }
