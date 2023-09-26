@@ -50,19 +50,17 @@ Your friends own a large greenhouse, and recently set up some great technology t
 
 # Plant Inventory
 
-It's important that your friends can check up on the status of their plants. Plants have an ID, name (your friends treat their plants like family), species, sell price, and watering interval (in days).Create a GET endpoint at \`/plants\` that returns all of this information in a JSON format like so:
+It's important that your friends can check up on the status of their plants. Plants have an ID, name (your friends treat their plants like family), species, sell price, and watering interval (in days). Create a GET endpoint at \`/plants\` that returns all of this information in a JSON format like so:
 
-\`\`\`json
-[
-    {
-        "id": 3,
-        "name": "Frederick",
-        "species": "rainbow carrot",
-        "sell_price": 6.50,
-        "watering_interval": 2
-    }
-]
-\`\`\`
+    [
+        {
+            "id": 3,
+            "name": "Frederick",
+            "species": "rainbow carrot",
+            "sell_price": 6.50,
+            "watering_interval": 2
+        }
+    ]
 `)
     }
 
