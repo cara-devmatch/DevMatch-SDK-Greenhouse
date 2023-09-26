@@ -1,4 +1,4 @@
-import { DevMatchValidator, EvaluatedTestCase, ProblemConfiguration, ProblemInputType, ProblemOpenedResult, ProblemPrerequisitesResult, ProblemTestCase, User } from './interfaces'
+import { CodeReviewTestCase, DevMatchValidator, EvaluatedTestCase, ProblemConfiguration, ProblemInputType, ProblemOpenedResult, ProblemPrerequisitesResult, ProblemTestCase, User } from './interfaces'
 
 import { GitHubPlugin } from './github'
 import { LoggerPlugin } from './logger'
@@ -7,7 +7,7 @@ import { DevMatchGitServer } from './DevMatchGitServer'
 import { StoragePlugin } from './s3'
 import { AzureDevOpsPlugin } from "./devops";
 
-export class Validator implements DevMatchValidator{
+export class Validator implements DevMatchValidator {
     constructor(
       private githubPlugin: GitHubPlugin,
       private unzipPlugin: UnzipPlugin,
@@ -19,21 +19,12 @@ export class Validator implements DevMatchValidator{
 
     async getTestCases(): Promise<ProblemTestCase[]> {
         return Promise.resolve([
-            new ProblemTestCase({
-            id: "TEST_1",
-            description: "Add two integers",
-            maxPoints: 10,
-        }),
-        new ProblemTestCase({
-            id: "TEST_2",
-            description: "Bad arguments - Too few",
-            maxPoints: 10,
-        }),
-        new ProblemTestCase({
-            id: "TEST_3",
-            description: "Bad arguments - Too many",
-            maxPoints: 80,
-        }),
+            new CodeReviewTestCase({
+                id: "SELLING_SOLD_PLANTS",
+                description: "The new plant selling endpoint does not consider what happens when we try to sell a plant we have already sold.",
+                maxPoints: 100,
+                newFileCommentLine: -1
+            })
         ])
     }
 
@@ -46,21 +37,29 @@ export class Validator implements DevMatchValidator{
         return Promise.resolve(
 `# The Greenhouse
 
-Your friends own a large greenhouse, and recently set up some great technology that can care for plants at the push of a button! However, they could use some help putting together an API so they can interact with their new technology from afar. You've decided to use Python's FastAPI framework to build this REST API for them, and store the data in a SQL database.
+Your friends own a large greenhouse, and recently set up some great technology that can care for plants at the push of a button! They have put together an API so they can interact with their new technology from afar using Python's FastAPI framework and SQL. You've been assigned to review a recent pull request to the API that modifies some core functionality.
 
-# Plant Inventory
+# The Database
 
-It's important that your friends can check up on the status of their plants. Plants have an ID, name (your friends treat their plants like family), species, sell price, and watering interval (in days). Create a GET endpoint at \`/plants\` that returns all of this information in a JSON format like so:
+## plants table
 
-    [
-        {
-            "id": 3,
-            "name": "Frederick",
-            "species": "rainbow carrot",
-            "sell_price": 6.50,
-            "watering_interval": 2
-        }
-    ]
+Plants have an \`id (primary key)\`, \`name (varchar)\` (your friends treat their plants like family), \`species (varchar)\`, \`sell_price (float)\`, and \`watering_interval_days (int)\` (which indicates how often that plant need watered).
+
+## watering_events table
+
+This table keeps track of when plants were last watered. A watering event has a \`plant_id (foreign key to plant's id)\` and an \`event_date (datetime)\`.
+
+## sales_events table
+
+This table keeps track of when plants were sold. a sales event has a \`plant_id (foreign key to plant's id)\`, a \`customer_name (varchar)\`, and an \`event_date (datetime)\`.
+
+Sold plants do not need watered anymore because they are no longer in the greenhouse.
+
+# Changes For Review
+
+Selling plants is a new operation for your friends, so the \`sell_price\` field on the \`plants\` table is a new column. Existing endpoints need to reflect this change, and a new endpoint was added to initate a sales event.
+
+Review the changes made, providing feedback on this pull request including readability, maintainability, and considering edge cases in inputs.
 `)
     }
 
@@ -69,8 +68,7 @@ It's important that your friends can check up on the status of their plants. Pla
      */
     async getProblemConfiguration(): Promise<ProblemConfiguration> {
         let config = new ProblemConfiguration();
-        config.ideEnabled = true;
-        config.inputType = ProblemInputType.GitRepo;
+        config.inputType = ProblemInputType.CodeReview;
         return Promise.resolve(config);
     }
 

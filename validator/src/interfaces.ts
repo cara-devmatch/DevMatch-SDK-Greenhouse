@@ -19,6 +19,15 @@ export class ProblemTestCase {
   }
 }
 
+export class CodeReviewTestCase extends ProblemTestCase {
+  public newFileCommentLine: number
+
+  public constructor(init?: Partial<CodeReviewTestCase>) {
+    super(init)
+    Object.assign(this, init)
+  }
+}
+
 export class EvaluatedTestCase extends ProblemTestCase {
   // After you have evaluated, you need to fill out these
   public actualPoints: number = 0
@@ -47,6 +56,7 @@ export class ProblemConfiguration {
 export enum ProblemInputType {
   GitRepo,
   Url,
+  CodeReview
 }
 
 export class ProblemOpenedMetadata {
