@@ -78,9 +78,15 @@ Review the changes made, providing feedback on this pull request including reada
      */
     async openProblem(user: User): Promise<ProblemOpenedResult> {
         let openResult = new ProblemOpenedResult();
-        const repoUrl = "https://github.com/cara-devmatch/Greenhouse-Code.git"
-
+        const repoUrl = "https://github.com/cara-devmatch/Greenhouse-Code"
         openResult.databag.set("repoUrl", repoUrl)
+
+        // pull the repo's two branches, unzip, and generate the diff
+        const zip = await this.githubPlugin.download("https://github.com/cara-devmatch/Greenhouse-Code", 1)
+        console.log(zip)
+        const unzipped = this.unzipPlugin.unzip(zip, "unzipped.txt")
+        console.log(unzipped)
+
         openResult.opened = true;
         openResult.databag.set('date', new Date().getTime().toString())
 
