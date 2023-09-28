@@ -82,7 +82,7 @@ Review the changes made, providing feedback on this pull request including reada
         openResult.databag.set("repoUrl", repoUrl)
 
         // pull the repo's two branches, unzip, and generate the diff
-        const zip = await this.githubPlugin.download("https://github.com/cara-devmatch/Greenhouse-Code.git", 1)
+        const zip = await this.githubPlugin.downloadZipballArchive("cara-devmatch", "Greenhouse-Code", "main")
         console.log(zip)
         const unzipped = this.unzipPlugin.unzip(zip, "unzipped.txt")
         console.log(unzipped)
