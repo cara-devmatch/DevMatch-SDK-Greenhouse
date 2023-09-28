@@ -84,8 +84,8 @@ Review the changes made, providing feedback on this pull request including reada
         openResult.databag.set("repoUrl", repoUrl)
 
         // pull the repo's two branches, unzip, and generate the diff
-        await this.githubPlugin.downloadZipballArchive("cara-devmatch", "Greenhouse-Code", "main", "zip.zip")
-        // this.unzipPlugin.unzipArrayBufferAndSave(zip, ".")
+        const zip = await this.githubPlugin.downloadZipballArchive("cara-devmatch", "Greenhouse-Code", "main", "zip.zip")
+        this.unzipPlugin.unzipArrayBufferAndSave(zip, ".")
 
         openResult.opened = true;
         openResult.databag.set('date', new Date().getTime().toString())
