@@ -7,6 +7,8 @@ import { DevMatchGitServer } from './DevMatchGitServer'
 import { StoragePlugin } from './s3'
 import { AzureDevOpsPlugin } from "./devops";
 
+import fs from 'fs'
+
 export class Validator implements DevMatchValidator {
     constructor(
       private githubPlugin: GitHubPlugin,
@@ -83,8 +85,15 @@ Review the changes made, providing feedback on this pull request including reada
 
         // pull the repo's two branches, unzip, and generate the diff
         const zip = await this.githubPlugin.downloadZipballArchive("cara-devmatch", "Greenhouse-Code", "main")
-        const unzipped = this.unzipPlugin.unzipArrayBufferAndSave(zip, ".")
-        console.log("unzip", unzipped)
+        this.unzipPlugin.unzipArrayBufferAndSave(zip, ".")
+        fs.readdir(".", (err, files) => {
+            if (err) throw err;
+
+            files.forEach(f => {
+                console.log(f)
+            })
+        })
+
 
         openResult.opened = true;
         openResult.databag.set('date', new Date().getTime().toString())
