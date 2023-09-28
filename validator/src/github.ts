@@ -37,7 +37,7 @@ export class GitHubPlugin {
   public async download(repoFullName: string, id: number) : Promise<any> {
   }
 
-  public async downloadZipballArchive(owner: string, repoName: string, branchName: string, saveLocation: string) : Promise<ArrayBuffer> {
+  public async downloadZipballArchive(owner: string, repoName: string, branchName: string): Promise<ArrayBuffer> {
     return Promise.resolve(new ArrayBuffer(1))
   }
 

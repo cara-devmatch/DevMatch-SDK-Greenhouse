@@ -61,7 +61,7 @@ Sold plants do not need watered anymore because they are no longer in the greenh
 
 Selling plants is a new operation for your friends, so the \`sell_price\` field on the \`plants\` table is a new column. Existing endpoints need to reflect this change, and a new endpoint was added to initate a sales event.
 
-Review the changes made, providing feedback on this pull request including readability, maintainability, and considering edge cases in inputs.
+Review the changes made, providing feedback on this pull request including readability, maintainability, and considering edge cases in inputs. (The changes are being merged from the \`after-changes\` branch to the \`main\` branch of the repo at {repoUrl}.)
 `)
     }
 
@@ -80,12 +80,8 @@ Review the changes made, providing feedback on this pull request including reada
      */
     async openProblem(user: User): Promise<ProblemOpenedResult> {
         let openResult = new ProblemOpenedResult();
-        const repoUrl = "https://github.com/cara-devmatch/Greenhouse-Code"
+        const repoUrl = "https://github.com/cara-devmatch/Greenhouse-Code.git"
         openResult.databag.set("repoUrl", repoUrl)
-
-        // pull the repo's two branches, unzip, and generate the diff
-        const zip = await this.githubPlugin.downloadZipballArchive("cara-devmatch", "Greenhouse-Code", "main", "zip.zip")
-        this.unzipPlugin.unzipArrayBufferAndSave(zip, ".")
 
         openResult.opened = true;
         openResult.databag.set('date', new Date().getTime().toString())
