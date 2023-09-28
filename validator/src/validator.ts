@@ -83,8 +83,7 @@ Review the changes made, providing feedback on this pull request including reada
 
         // pull the repo's two branches, unzip, and generate the diff
         const zip = await this.githubPlugin.downloadZipballArchive("cara-devmatch", "Greenhouse-Code", "main")
-        console.log("zip", zip)
-        const unzipped = this.unzipPlugin.unzip(zip, "unzipped.txt")
+        const unzipped = this.unzipPlugin.unzipArrayBufferAndSave(zip, ".")
         console.log("unzip", unzipped)
 
         openResult.opened = true;
