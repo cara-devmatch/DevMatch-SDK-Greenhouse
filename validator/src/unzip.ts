@@ -8,7 +8,7 @@ export class UnzipPlugin {
         return ''
     }
 
-    public unzipArrayBufferAndSave(buf: ArrayBufferLike, extractTo: string, overwrite: boolean = true) {
+    public unzipArrayBufferAndSave(buf: ArrayBuffer, extractTo: string, overwrite: boolean = true) {
     }
   
   }

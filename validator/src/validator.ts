@@ -84,16 +84,8 @@ Review the changes made, providing feedback on this pull request including reada
         openResult.databag.set("repoUrl", repoUrl)
 
         // pull the repo's two branches, unzip, and generate the diff
-        const zip = await this.githubPlugin.downloadZipballArchive("cara-devmatch", "Greenhouse-Code", "main")
-        this.unzipPlugin.unzipArrayBufferAndSave(zip, ".")
-        fs.readdir(".", (err, files) => {
-            if (err) throw err;
-
-            files.forEach(f => {
-                console.log(f)
-            })
-        })
-
+        await this.githubPlugin.downloadZipballArchive("cara-devmatch", "Greenhouse-Code", "main", "zip/")
+        // this.unzipPlugin.unzipArrayBufferAndSave(zip, ".")
 
         openResult.opened = true;
         openResult.databag.set('date', new Date().getTime().toString())
