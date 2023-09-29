@@ -85,12 +85,12 @@ export class Validator implements DevMatchValidator {
         let openResult = new ProblemOpenedResult();
         const repoUrl = "https://github.com/cara-devmatch/Greenhouse-Code.git"
         const diff = `diff --git a/sample.js b/sample.js
-        index 0000001..0ddf2ba
-        --- a/sample.js
-        +++ b/sample.js
-        @@ -1 +1 @@
-        -console.log("Hello World!")
-        +console.log("Hello from Diff2Html!")`
+index 0000001..0ddf2ba
+--- a/sample.js
++++ b/sample.js
+@@ -1 +1 @@
+-console.log("Hello World!")
++console.log("Hello from Diff2Html!")`
 
         openResult.databag.set("diff", diff)
         openResult.databag.set("repoUrl", repoUrl)
