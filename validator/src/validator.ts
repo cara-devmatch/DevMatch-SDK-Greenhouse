@@ -84,8 +84,14 @@ export class Validator implements DevMatchValidator {
     async openProblem(user: User): Promise<ProblemOpenedResult> {
         let openResult = new ProblemOpenedResult();
         const repoUrl = "https://github.com/cara-devmatch/Greenhouse-Code.git"
-        const diff = "\n\n--- a/school_crud.py\n+++ b/school_crud.py\n@@ -1,7 +1,107 @@\n import json\n \n class SchoolCRUD:\n+    def validate_input(self, data):\n+        \"\"\"Validates the input data for the API\n+\n+        Args:\n+            data (dict): The data to validate\n+\n+        Returns:\n+            bool: True if the data is valid, False otherwise\n+        \"\"\"\n+        # Validate the data is a dict\n+        if not isinstance(data, dict):\n+            return False\n+\n+        # Validate the required fields\n+        required_fields = [\"name\", \"address\", \"phone\"]\n+        for field in required_fields:\n+            if field not in data:\n+                return False\n+\n+        # Validate the name is a string\n+        if not isinstance(data[\"name\"], str):\n+            return False\n+\n+        # Validate the address is a string\n+        if not isinstance(data[\"address\"], str):\n+            return False\n+\n+        # Validate the phone is a string\n+        if not isinstance(data[\"phone\"], str):\n+            return False\n+\n+        # Validate the phone is a valid phone number\n+        if not re.match(r\"^\\d{3}-\\d{3}-\\d{4}$\", data[\"phone\"]):\n+            return False\n+\n+        # Validate the optional fields\n+        optional_fields = [\"website\", \"principal\"]\n+        for field in optional_fields:\n+            if field in data:\n+                # Validate the website is a string\n+                if field == \"website\" and not isinstance(data[\"website\"], str):\n+                    return False\n+\n+                # Validate the principal is a string\n+                if field == \"principal\" and not isinstance(data[\"principal\"], str):\n+                    return False\n+\n+        # If all the checks pass, the data is valid\n+        return True\n+\n     def create(self, data):\n         \"\"\"Creates a new school\n\n@@ -10,6 +110,7 @@ class SchoolCRUD:\n             return False\n \n         # Validate the data\n+        if not self.validate_input(data):\n             return False\n \n         # Create the school"
-        
+        const diff = `diff --git a/sample.js b/sample.js
+        index 0000001..0ddf2ba
+        --- a/sample.js
+        +++ b/sample.js
+        @@ -1 +1 @@
+        -console.log("Hello World!")
+        +console.log("Hello from Diff2Html!")`
+
         openResult.databag.set("diff", diff)
         openResult.databag.set("repoUrl", repoUrl)
 
