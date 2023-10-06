@@ -62,8 +62,6 @@ Sold plants do not need watered anymore because they are no longer in the greenh
 Selling plants is a new operation for your friends, so the \`sell_price\` field on the \`plants\` table is a new column. Existing endpoints need to reflect this change, and a new endpoint was added to initate a sales event.
 
 Review the changes made, providing feedback on this pull request including readability, maintainability, and considering edge cases in inputs.
-
-(The changes are being merged from the \`after-changes\` branch to the \`main\` branch of the repo at \`{repoUrl}\`.)
 `)
     }
 
