@@ -20,6 +20,7 @@ export class ProblemTestCase {
 }
 
 export class CodeReviewTestCase extends ProblemTestCase {
+  public newFileName: string
   public newFileCommentLine: number
 
   public constructor(init?: Partial<CodeReviewTestCase>) {

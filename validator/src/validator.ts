@@ -22,10 +22,25 @@ export class Validator implements DevMatchValidator {
     async getTestCases(): Promise<ProblemTestCase[]> {
         return Promise.resolve([
             new CodeReviewTestCase({
-                id: "SELLING_SOLD_PLANTS",
-                description: "The new plant selling endpoint does not consider what happens when we try to sell a plant we have already sold.",
-                maxPoints: 100,
-                newFileCommentLine: -1
+                id: "REPEATED_PLANT_EXISTS_LOGIC",
+                description: "Several endpoints now repeat logic to determine if a plant exists. We should abstract this functionality into a method.",
+                maxPoints: 30,
+                newFileName: "main.py",
+                newFileCommentLine: 45
+            }),
+            new CodeReviewTestCase({
+                id: "WATERING_SOLD_PLANTS",
+                description: "The POST /watering_events route does not take into account a plant having been sold.",
+                maxPoints: 30,
+                newFileName: "main.py",
+                newFileCommentLine: 79
+            }),
+            new CodeReviewTestCase({
+                id: "USE_MODEL_INHERITANCE",
+                description: "The GenericEvent is not very extensible (what if we have all kinds of events? The Literal type will get very long). We should use inheritance and extend the generic event class to create specific event types.",
+                maxPoints: 30,
+                newFileName: "models.py",
+                newFileCommentLine: 14
             })
         ])
     }
@@ -45,7 +60,7 @@ Your friends own a large greenhouse, and recently set up some great technology t
 
 ## plants table
 
-Plants have an \`id (primary key)\`, \`name (varchar)\` (your friends treat their plants like family), \`species (varchar)\`, \`sell_price (float)\`, and \`watering_interval_days (int)\` (which indicates how often that plant need watered).
+Plants have an \`id (primary key)\`, \`name (varchar)\` (your friends treat their plants like family), \`species (varchar)\`, and \`watering_interval_days (int)\` (which indicates how often that plant need watered).
 
 ## watering_events table
 
@@ -59,7 +74,7 @@ Sold plants do not need watered anymore because they are no longer in the greenh
 
 # Changes For Review
 
-Selling plants is a new operation for your friends, so the \`sell_price\` field on the \`plants\` table is a new column. Existing endpoints need to reflect this change, and a new endpoint was added to initate a sales event.
+Selling plants is a new operation for your friends, so there is a new column \`sell_price (float)\` on the \`plants\` table. A new endpoint was added to initate a sales event and existing endpoints were updated. Additionally, an endpoint that returns all events for a particular plant by ID has been added.
 
 Review the changes made, providing feedback on this pull request including readability, maintainability, and considering edge cases in inputs.
 `)
