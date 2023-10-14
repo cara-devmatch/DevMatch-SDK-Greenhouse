@@ -1,4 +1,4 @@
-import { CodeReviewTestCase, DevMatchValidator, EvaluatedTestCase, ProblemConfiguration, ProblemInputType, ProblemOpenedResult, ProblemPrerequisitesResult, ProblemTestCase, User } from './interfaces'
+import { CodeReviewComment, DevMatchValidator, EvaluatedTestCase, ProblemConfiguration, ProblemInputType, ProblemOpenedResult, ProblemPrerequisitesResult, ProblemTestCase, User } from './interfaces'
 
 import { GitHubPlugin } from './github'
 import { LoggerPlugin } from './logger'
@@ -21,21 +21,21 @@ export class Validator implements DevMatchValidator {
 
     async getTestCases(): Promise<ProblemTestCase[]> {
         return Promise.resolve([
-            new CodeReviewTestCase({
+            new CodeReviewComment({
                 id: "REPEATED_PLANT_EXISTS_LOGIC",
                 description: "Several endpoints now repeat logic to determine if a plant exists. We should abstract this functionality into a method.",
                 maxPoints: 30,
                 newFileName: "main.py",
                 newFileCommentLine: 45
             }),
-            new CodeReviewTestCase({
+            new CodeReviewComment({
                 id: "WATERING_SOLD_PLANTS",
                 description: "The POST /watering_events route does not take into account a plant having been sold.",
                 maxPoints: 30,
                 newFileName: "main.py",
                 newFileCommentLine: 79
             }),
-            new CodeReviewTestCase({
+            new CodeReviewComment({
                 id: "USE_MODEL_INHERITANCE",
                 description: "The GenericEvent is not very extensible (what if we have all kinds of events? The Literal type will get very long). We should use inheritance and extend the generic event class to create specific event types.",
                 maxPoints: 30,
