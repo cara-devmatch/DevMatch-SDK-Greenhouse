@@ -26,7 +26,11 @@ app = FastAPI(lifespan=lifespan)
 def get_plants() -> list[Plant]:
     all_plants: list[Plant] = []
 
-    for row in context["db_cursor"].execute("SELECT plant.* FROM plants WHERE plant.id NOT IN (SELECT plant_id FROM sales_events)"):
+    for row in context["db_cursor"].execute(
+        "SELECT plant.* FROM plants" +
+        "WHERE plant.id NOT IN " +
+        "(SELECT plant_id FROM sales_events)"):
+    
         plant = Plant(
             id=int(row["id"]),
             name=row["name"],
@@ -61,7 +65,8 @@ def sell_plant(event: SalesEvent, res: Response):
     
     # sell the plant
     context["db_cursor"].execute(
-        "INSERT INTO sales_events(plant_id, customer_name, event_date) VALUES (?, ?, ?)",
+        "INSERT INTO sales_events(plant_id, customer_name, event_date)" +
+        "VALUES (?, ?, ?)",
         (event.plant_id, event.customer_name, event.event_date)
         )
 
@@ -109,12 +114,14 @@ def all_plant_events(plant_id: int, res: Response) -> list[GenericEvent]:
         return {"message": "Plant not found"}
     
     watering_events = context["db_cursor"].execute(
-        "SELECT event_date FROM watering_events WHERE plant_id=? ORDER BY event_date DESC",
+        "SELECT event_date FROM watering_events WHERE plant_id=?" +
+        "ORDER BY event_date DESC",
         (plant_id)
         )
     
     sales_events = context["db_cursor"].execute(
-        "SELECT event_date FROM sales_events WHERE plant_id=? ORDER BY event_date DESC",
+        "SELECT event_date FROM sales_events" +
+        "WHERE plant_id=? ORDER BY event_date DESC",
         (plant_id)
         )
 
