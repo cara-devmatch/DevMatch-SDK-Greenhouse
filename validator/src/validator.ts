@@ -97,7 +97,6 @@ Review the changes made, providing feedback on this pull request including reada
         let openResult = new ProblemOpenedResult();
 
         openResult.opened = true;
-        openResult.databag.set('date', new Date().getTime().toString())
 
         return Promise.resolve(openResult)
     }
