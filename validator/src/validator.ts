@@ -24,14 +24,14 @@ export class Validator implements DevMatchValidator {
             new CodeReviewComment({
                 id: "REPEATED_PLANT_EXISTS_LOGIC",
                 description: "Several endpoints now repeat logic to determine if a plant exists. We should abstract this functionality into a method.",
-                maxPoints: 30,
+                maxPoints: 35,
                 newFileName: "main.py",
                 newFileCommentLine: 45
             }),
             new CodeReviewComment({
                 id: "WATERING_SOLD_PLANTS",
                 description: "The POST /watering_events route does not take into account a plant having been sold.",
-                maxPoints: 30,
+                maxPoints: 35,
                 newFileName: "main.py",
                 newFileCommentLine: 79
             }),
